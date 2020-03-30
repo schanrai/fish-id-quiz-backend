@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::API
+  before_action :authorized
+  #will call the authorized method before anything else happens in our app
+
 
   def encode_token(payload)
     JWT.encode(payload, 'SECRET_KEY')

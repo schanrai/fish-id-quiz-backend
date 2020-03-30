@@ -1,5 +1,7 @@
 class Api::V1::AuthController < ApplicationController
-
+  skip_before_action :authorized, only: [:login]
+    #login action is exempt from the authorized method in App controller
+    
   def login
     user = User.find_by(email: user_login_params[:email])
     #User#authenticate comes from BCrypt
