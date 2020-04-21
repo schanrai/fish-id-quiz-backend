@@ -6,18 +6,19 @@ class Api::V1::UsersController < ApplicationController
         user = User.create(user_params)
         if user.valid?
             token = encode_token(user_id: user.id)
-            render json: { user: UserSerializer.new(user), jwt: token }, status: :created
-            #render json: {user: user, only: [:id, :username, :email], jwt: token}, status: created
+            render json: { user: user, jwt: token }, status: :created
+            #render json: {useronly: [:id, :username, :email], jwt: token}, status: created
+
         else
             render json: { :errors => user.errors.full_messages }, status: :not_acceptable
         end
     end
 
-
-    def show
-      user = User.find_by(:id params[:id])
-      render json: UserSerializer.new(user)
-    end
+    #show gamehistory?
+  def show
+      user = User.find_by(params[:id])
+      render json: user
+  end
 
 
 
