@@ -1,4 +1,6 @@
 class Api::V1::GameHistoriesController < ApplicationController
+  # before_action :find_user, only: [:create]
+  # you would need to tweak the create code in line with @user
 
   def index
     game_histories = current_user.game_histories
@@ -12,7 +14,6 @@ class Api::V1::GameHistoriesController < ApplicationController
     game_history.user_id = current_user.id
     if game_history.save
     # render json: {game_history, message: 'Hashes of data will get converted to JSON' }
-    # response = { message: "Successfully saved game." }
       render json: game_history, status: :accepted
     else
       render json: { errors: game_history.errors.full_messages }, status: :unprocessible_entity
@@ -24,5 +25,9 @@ class Api::V1::GameHistoriesController < ApplicationController
     def game_history_params
       params.permit(:score, :user_id)
     end
+
+    # def find_user
+    #   @user = User.find(params[:id])
+    # end
 
   end
