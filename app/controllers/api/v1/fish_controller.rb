@@ -1,5 +1,6 @@
 class Api::V1::FishController < ApplicationController
-  skip_before_action :authorized
+  #skip_before_action :authorized3
+  #find way to get the error message from Application Contorller out to the front end
 
   def index
     fishies = Fish.all

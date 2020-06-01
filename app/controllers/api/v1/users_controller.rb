@@ -7,10 +7,8 @@ class Api::V1::UsersController < ApplicationController
         if user.valid?
             token = encode_token(user_id: user.id)
             render json: { user: user, jwt: token }, status: :created
-            #render json: {useronly: [:id, :username, :email], jwt: token}, status: created
-
         else
-            render json: { :errors => user.errors.full_messages }, status: :not_acceptable
+            render json: { :messages => user.errors.full_messages }, status: :not_acceptable
         end
     end
 
