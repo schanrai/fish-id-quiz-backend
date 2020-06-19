@@ -12,7 +12,6 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
-    #show gamehistory?
   def show
       user = User.find_by(params[:id])
       render json: user

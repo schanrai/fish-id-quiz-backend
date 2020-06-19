@@ -19,7 +19,7 @@ class Api::V1::GameHistoriesController < ApplicationController
   private
 
     def game_history_params
-      #params.require(:game_history).permit(:score)
+      #params.require(:game_history).permit(:score) this doesn't work
       params.permit(:score)
     end
 
